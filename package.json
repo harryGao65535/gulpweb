@@ -1,0 +1,34 @@
+{
+  "name": "gulpcms",
+  "version": "0.1.0",
+  "description": "gulp normal modual",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/harryGao65535/gulpweb.git"
+  },
+  "keywords": [
+    "gulp"
+  ],
+  "author": "ghr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harryGao65535/gulpweb/issues"
+  },
+  "homepage": "https://github.com/harryGao65535/gulpweb#readme",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-jshint": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-uglify": "^2.0.0"
+  }
+}

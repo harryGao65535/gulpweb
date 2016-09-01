@@ -15,7 +15,8 @@
       concat = require('gulp-concat'),
       notify = require('gulp-notify'),
       cache  = require('gulp-cache'),
-      livereload = require('gulp-livereload');
+      livereload = require('gulp-livereload')
+      babel = require('gulp-babel');
 
   //样式的控制
   gulp.task('styles',function(){
@@ -39,4 +40,42 @@
                .pipe(uglify())
                .pipe(gulp.dest('dist/scripts'))
                .pipe(notify({message :　"scripts task complete"}));
+ });
+ //图片
+ gulp.task('images',function(){
+   return gulp.src('src/images/*')
+              .pipe(cache(imagemin({optimizationLevel:3,progressive:true,interlaced : true})))
+              .pipe(gulp.dest('dist/images'))
+              .pipe(notify({message : "Images task complete"}));
+ });
+ //清理
+ gulp.task('clean',function(){
+   return gulp.src(['dist/scripts','dist/styles','dist/images'],{read:false})
+               .pipe(clean());
+ });
+ //预设任务
+ gulp.task('default',['clean'],function(){
+     gulp.start('styles','scripts','images');
+ });
+ //看守
+ gulp.task('watch',function(){
+     //监测。less文档
+     gulp.watch('src/styles/*.less',['styles']);
+     //监测.js文档
+     gulp.watch('src/scripts/*.js',['scripts']);
+     //看守所有图片档
+     gulp.watch('src/images/**',['images']);
+     //看守所有文档
+     var server = livereload();
+     gulp.watch(['dist/**']).on('change',function(file){
+        server.changed(file.path);
+     });
+ });
+ //编译es6
+ gulp.task('es6',function(){
+   return gulp.src('src/scripts/main.js')
+              .pipe(babel({
+                presets : ['es2015']
+              }))
+              .pipe(gulp.dest('dist/scripts/'));
  });

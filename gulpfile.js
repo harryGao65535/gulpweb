@@ -28,3 +28,15 @@
            .pipe(gulp.dest('dist/styles'))
            .pipe(notify({message : 'styles task complete'}));
   });
+ //js脚本
+ gulp.task('scripts',function(){
+    return gulp.src('src/scripts/*.js')
+               .pipe(jshint('.jshintrc'))
+               .pipe(jshint.reporter('default'))
+               .pipe(concat('main.js'))
+               .pipe(gulp.dest('dist/scripts'))
+               .pipe(rename({suffix : '.min'}))
+               .pipe(uglify())
+               .pipe(gulp.dest('dist/scripts'))
+               .pipe(notify({message :　"scripts task complete"}));
+ });
